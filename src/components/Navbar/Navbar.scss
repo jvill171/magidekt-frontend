@@ -1,0 +1,49 @@
+/* Navbar.scss */
+
+.navbar {
+    background-color: rgb(99, 99, 99);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+
+    /* Style for the logo */
+    .logo {
+        font-size: 24px;
+        letter-spacing: 0;
+        span{
+            color:goldenrod;
+        }
+    }
+    
+    a{
+        text-decoration: none;
+        color: white;
+        
+        &.active{
+            color: orange;
+            font-weight: bold;
+        }
+    }
+    
+    /* Style for the navigation links */
+    .nav-NavLinks {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        
+        li{
+            margin-right: 20px;
+        }
+        
+        a:hover:not(.active), .signout:hover {
+            cursor: pointer;
+            color: goldenrod;
+        }
+    }
+}
+  
+  
