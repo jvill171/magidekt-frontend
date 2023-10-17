@@ -28,23 +28,23 @@ const RouteList = () =>{
             {/* ONLY if user is logged in */}
             {user ? 
                 <>
-                <Route
-                    path="/profile"
-                    element={<Profile />}
-                />
+                    <Route
+                        path="/profile"
+                        element={<Profile />}
+                    />
                 </>
-                : //If no user
+            : //If no user
                 <>
-                <Route
-                    path="/login"
-                    element={ <Login /> }
-                />
-                
-                <Route
-                    path="/signup"
-                    element={ <SignUp /> }
-                />
-                    </>
+                    <Route
+                        path="/login"
+                        element={ <Login /> }
+                    />
+                    
+                    <Route
+                        path="/signup"
+                        element={ <SignUp /> }
+                    />
+                </>
             }
             {/* Catch all route */}
             <Route 
