@@ -1,12 +1,15 @@
 /* Navbar.scss */
 
+.navbar-fade{
+    background: linear-gradient(to bottom, rgb(99, 99, 99) 60%, rgba(0, 0, 0, 0));
+    padding-bottom: 2em;
+}
+
 .navbar {
-    background-color: rgb(99, 99, 99);
-    padding: 10px 20px;
+    padding: 0.6em 1.2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
     font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
 
     /* Style for the logo */
@@ -15,16 +18,18 @@
         letter-spacing: 0;
         span{
             color:goldenrod;
+            font-weight: bold;
         }
     }
     
-    a{
+    a, .signout{
         text-decoration: none;
         color: white;
         
         &.active{
             color: orange;
-            font-weight: bold;
+            text-shadow: 0px 0px 10px rgba(255, 165, 0, 1);
+            letter-spacing: 0.2px;
         }
     }
     
