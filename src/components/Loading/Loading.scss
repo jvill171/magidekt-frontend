@@ -1,0 +1,46 @@
+
+/* Define the animation for jumping */
+@keyframes jump {
+    0%, 60% {
+      transform: translateY(0); /* Initial and final position (no translation) */
+    }
+    30% {
+      transform: translateY(-10px); /* Move up by 20 pixels */
+    }
+}
+
+.Loading{
+    .ms{
+        border-radius: 50%;      /* Rounded border */
+        padding: calc(2em / 15); /* 2/15 ths of parent elment font size*/
+        margin: calc(1em/15);     /* 1/15 ths of parent elment font size*/
+        box-shadow: calc(-1em/15) calc(1em/15) 0 rgba(0,0,0,0.85);
+        border: 1px solid black;
+        color:black;
+        animation: jump 1.5s ease-in-out infinite; // Adjust the duration as needed
+
+      }
+
+      
+    .ms-g{
+        background-color: #9cd4ad;
+        animation-delay: 0.1s;
+    }
+    .ms-u{
+        background-color: #a9e1fa;
+        animation-delay: 0.2s;
+    }
+    .ms-r{
+        background-color: #fbaa8f;
+        animation-delay: 0.3s;
+    }
+    .ms-w{
+        background-color: #fefcd6;
+        animation-delay: 0.4s;
+    }
+    .ms-b{
+        background-color: #cdc2c0;
+        animation-delay: 0.5s;
+    }
+
+}
