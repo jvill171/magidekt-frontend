@@ -1,0 +1,17 @@
+
+.Home{
+    
+    .auth-buttons button{
+        margin: 0 5px;
+        padding: 3px 8px;
+        font-size: 1.3em;
+        border-radius: 5px;
+        border: 1px solid black;
+        background-color: goldenrod;
+
+        &:hover{
+            cursor: pointer;
+            background-color: gold;
+        }
+    }
+}
