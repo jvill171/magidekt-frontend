@@ -58,6 +58,48 @@ class Magidekt {
     }
   }
 
+
+  /**getUserData
+   * Retreive a specific user's data
+   * 
+   * Returns response:
+   *    {username, displayName, email, isAdmin, deckCount }
+   */
+  static async getUserData(username){
+    try{
+      let res = await this.request(`users/${username}`);
+      return res.user;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
+  /**updateUserData
+   * Update a user's username, password, and/or email
+   * 
+   * Returns response:
+   *    {username, displayName, email, isAdmin}
+   */
+  static async updateUserData(username, formData){
+
+    const { displayName, email, password } = formData;
+
+    const data = {
+      displayName: displayName.trim(), // Remove leading/trailing blankspace
+      email,
+      ...(password && {password}) // Ignore empty/blank password
+    }
+
+    try{
+      let res = await this.request(`users/${username}`, data, "patch")
+      return res.user;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
 }
 
 export default Magidekt;
