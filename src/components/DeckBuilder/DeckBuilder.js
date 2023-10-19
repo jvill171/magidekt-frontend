@@ -3,7 +3,7 @@ import "./DeckBuilder.scss"
 const DeckBuilder = () =>{
 
     return(
-        <div className="Home">
+        <div className="DeckBuilder">
             <h1>DeckBuilder Component</h1>
         </div>
     )
