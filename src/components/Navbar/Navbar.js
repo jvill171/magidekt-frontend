@@ -27,6 +27,11 @@ const Navbar = () =>{
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink to="/decklist" >
+                                Decks
+                            </NavLink>
+                        </li>
+                        <li>
                             <div className="signout" onClick={handleSignout}>
                                 Signout
                             </div>

@@ -5,6 +5,7 @@ import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../../context/UserContext';
+import DeckList from '../DeckList/DeckList';
 
 const RouteList = () =>{
 
@@ -31,6 +32,10 @@ const RouteList = () =>{
                     <Route
                         path="/profile"
                         element={<Profile />}
+                    />
+                    <Route
+                        path="/deckList"
+                        element={<DeckList />}
                     />
                 </>
             : //If no user
