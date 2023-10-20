@@ -1,14 +1,14 @@
-import { Routes, Route, Navigate} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import Home from "../Home/Home"
 import Profile from "../Profile/Profile"
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
+import DeckBuilder from "../DeckBuilder/DeckBuilder";
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../../context/UserContext';
 import DeckList from '../DeckList/DeckList';
 
 const RouteList = () =>{
-
     const {user} = useContext(UserContext)
 
     // useEffect(()=>{
@@ -33,9 +33,13 @@ const RouteList = () =>{
                         path="/profile"
                         element={<Profile />}
                     />
-                    <Route
-                        path="/deckList"
+                    <Route exact
+                        path="/decks/:username"
                         element={<DeckList />}
+                    />
+                    <Route exact
+                        path="/decks/:username/:deckId"
+                        element={<DeckBuilder />}
                     />
                 </>
             : //If no user
@@ -52,10 +56,10 @@ const RouteList = () =>{
                 </>
             }
             {/* Catch all route */}
-            <Route 
+            {/* <Route 
                 path="*"
                 element={ <Navigate to="/" replace={true} /> }
-            />
+            /> */}
         </Routes>
     )
 }
