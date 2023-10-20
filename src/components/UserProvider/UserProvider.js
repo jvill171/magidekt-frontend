@@ -35,8 +35,8 @@ const UserProvider = () =>{
         <UserContext.Provider value={{ user, updateUser }}>
         {isLoading ?
           <>
-            <h1>Loading...</h1>
-            <Loading />
+            <br/>
+            <Loading showText={true} breakCount={3}/>
           </>
           :
           <>
