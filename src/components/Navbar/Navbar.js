@@ -27,7 +27,7 @@ const Navbar = () =>{
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/decklist" >
+                            <NavLink to={`/decks/${user}`} >
                                 Decks
                             </NavLink>
                         </li>
