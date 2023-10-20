@@ -100,6 +100,24 @@ class Magidekt {
     }
   }
 
+  
+
+  /**getUserDecks
+   * Retreive all decks for a specified user
+   * 
+   * Returns response:
+   *    { id, deckName, description, format, colorIdentity, tags, displayName}
+   */
+  static async getUserDecks(username){
+    try{
+      let res = await this.request(`users/${username}/decks`);
+      return res.deckCollection;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
 }
 
 export default Magidekt;
