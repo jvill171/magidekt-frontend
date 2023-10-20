@@ -1,0 +1,59 @@
+
+.decklist-item {
+    flex: 0 0 calc(25% - 10px);
+    min-width: 200px; 
+    background-color: rgb(240, 240, 240); 
+    padding: 10px; 
+    border: 1px solid rgb(99, 99, 99);
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: black;
+    text-decoration: none;
+    
+    ul{
+        text-align: left;
+        list-style: none;
+    }
+
+    .deck-name{
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .deck-identity{
+        font-size: 1.4em;
+        margin: -10px auto;
+        .ms{
+            border-radius: 50%;      /* Rounded border */
+            padding: calc(2em / 15); /* 2/15 ths of parent elment font size*/
+            margin: 0 calc(1em/15 + 2px);     /* 1/15 ths of parent elment font size*/
+            box-shadow: calc(-1em/15) calc(1em/15) 0 rgba(0,0,0,0.85);
+            border: 1px solid black;
+            color:black;
+        }
+        .ms-g{
+            background-color: #abddbd;
+        }
+        .ms-u{
+            background-color: #bae7fb;
+        }
+        .ms-r{
+            background-color: #faba9f;
+        }
+        .ms-w{
+            background-color: #fefddf;
+        }
+        .ms-b{
+            background-color: #d7d0cd;
+        }
+        .ms-c{
+            background-color: #d7d0cd;
+        }
+    }
+    
+    &:hover{
+        background-color: hsl(43, 74%, 90%); 
+        scale: 103%;
+    }
+}
+  
