@@ -100,8 +100,6 @@ class Magidekt {
     }
   }
 
-  
-
   /**getUserDecks
    * Retreive all decks for a specified user
    * 
@@ -112,6 +110,37 @@ class Magidekt {
     try{
       let res = await this.request(`users/${username}/decks`);
       return res.deckCollection;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
+  /**getDeckFormats
+   * Retreive all valid deck formats
+   * 
+   * Returns an array of valid deck formats as:
+   *    ["format1", "format2", etc...]
+   */
+  static async getDeckFormats(){
+    try{
+      let res = await this.request(`decks/deck_formats`);
+      return res.deckFormats;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
+  /**createDeck()
+   * 
+   * Creates a new deck without any cards
+   * 
+   */
+  static async createDeck(username, data){
+    try{
+      let res = await this.request(`users/${username}/decks`, data, `post`);
+      return res.deck;
     }catch(err){
       console.error(err)
       return err;
