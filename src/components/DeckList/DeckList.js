@@ -4,7 +4,7 @@ import MagidektApi from "../../helpers/MagidektApi";
 
 import "./DeckList.scss"
 import DeckListItem from "../DeckListItem/DeckListItem";
-import { useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Loading from "../Loading/Loading";
 
 const DeckList = () =>{
@@ -21,7 +21,7 @@ const DeckList = () =>{
         }
         getUserDecks();
         setIsLoading(false)
-    }, [])
+    }, [user])
 
     return(
         <div className="DeckList">
@@ -34,10 +34,15 @@ const DeckList = () =>{
                 </>
                 :
                 <>
+                    <NavLink to={`/decks/${user}/new`} >
+                        <button>New Deck</button>
+                    </NavLink>
                     
                     <div className="deck-list">
-                        {userDecks && userDecks.map(d=>
-                            <DeckListItem className="deck-item" key={`deck-${d.id}`} data={d} />)
+                        {userDecks
+                            ? userDecks.map(d=>
+                                <DeckListItem className="deck-item" key={`deck-${d.id}`} data={d} />)
+                            : <h3>No decks found!</h3>
                         }
                     </div>
                 </>
