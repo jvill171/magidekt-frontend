@@ -41,7 +41,10 @@ const DeckList = () =>{
                     <div className="deck-list">
                         {userDecks
                             ? userDecks.map(d=>
-                                <DeckListItem className="deck-item" key={`deck-${d.id}`} data={d} />)
+                                <DeckListItem key={`deck-${d.id}`}
+                                              className="deck-item"
+                                              data={d}
+                                              showOwner={false}/>)
                             : <h3>No decks found!</h3>
                         }
                     </div>
