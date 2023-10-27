@@ -1,0 +1,137 @@
+  .IconMTG div{
+    background-color: white;
+    font-size:1em;
+  }
+
+
+.mana{
+    display: inline-block;
+    width: calc(1em - 2px);
+    height: calc(1em - 2px);
+    margin: 0 0.1em;
+    border-radius: 1em;
+    transform: translate(0 , 0.15em);
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    border: 1px solid black;
+    box-shadow: calc(-1em/15) calc(1em/15) 0 rgba(0,0,0,0.85);
+}
+
+.mana-HR, .mana-HW{
+    background-position: 100% 50%;
+    background-size: 50% 100%;
+    background-color: black;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+    box-shadow: none;
+}
+
+.mana-100{
+    width: calc(2em - 2px);
+}
+
+.mana-1000000{
+    width: calc(5em - 2px);
+}
+
+.mana-PW, .mana-E, .mana-TK, .mana-CHAOS{
+    background-size:contain;
+    box-shadow: none;
+    border-color: rgba(0,0,0,0);
+}
+
+// NUMBERS
+.mana-0{ background-image: url('../../images/0.svg');}
+.mana-½{ background-image: url('../../images/½.svg');}
+.mana-1{ background-image: url('../../images/1.svg');}
+.mana-2{ background-image: url('../../images/2.svg');}
+.mana-3{ background-image: url('../../images/3.svg');}
+.mana-4{ background-image: url('../../images/4.svg');}
+.mana-5{ background-image: url('../../images/5.svg');}
+.mana-6{ background-image: url('../../images/6.svg');}
+.mana-7{ background-image: url('../../images/7.svg');}
+.mana-8{ background-image: url('../../images/8.svg');}
+.mana-9{ background-image: url('../../images/9.svg');}
+.mana-10{ background-image: url('../../images/10.svg');}
+.mana-11{ background-image: url('../../images/11.svg');}
+.mana-12{ background-image: url('../../images/12.svg');}
+.mana-13{ background-image: url('../../images/13.svg');}
+.mana-14{ background-image: url('../../images/14.svg');}
+.mana-15{ background-image: url('../../images/15.svg');}
+.mana-16{ background-image: url('../../images/16.svg');}
+.mana-17{ background-image: url('../../images/17.svg');}
+.mana-18{ background-image: url('../../images/18.svg');}
+.mana-19{ background-image: url('../../images/19.svg');}
+.mana-20{ background-image: url('../../images/20.svg');}
+.mana-100{ background-image: url('../../images/100.svg');}
+.mana-1000000{ background-image: url('../../images/1000000.svg');}
+.mana-∞{ background-image: url('../../images/∞.svg');}
+
+// Mono-colored
+.mana-S{ background-image: url('../../images/S.svg');}  // Snow
+.mana-C{ background-image: url('../../images/C.svg');}  // Colorless
+.mana-B{ background-image: url('../../images/B.svg');}  // Black
+.mana-R{ background-image: url('../../images/R.svg');}  // Red
+.mana-G{ background-image: url('../../images/G.svg');}  // Green
+.mana-W{ background-image: url('../../images/W.svg');}  // White
+.mana-U{ background-image: url('../../images/U.svg');}  // Blue
+
+// Variable-Cost
+.mana-X{ background-image: url('../../images/X.svg');}  // X Generic
+.mana-Y{ background-image: url('../../images/Y.svg');}  // Y Generic
+.mana-Z{ background-image: url('../../images/Z.svg');}  // Z Generic
+
+// Phyrexian Mono-colored
+.mana-P{ background-image: url('../../images/P.svg');}
+.mana-GP{ background-image: url('../../images/GP.svg');}
+.mana-BP{ background-image: url('../../images/BP.svg');}
+.mana-RP{ background-image: url('../../images/RP.svg');}
+.mana-UP{ background-image: url('../../images/UP.svg');}
+.mana-WP{ background-image: url('../../images/WP.svg');}
+
+// Hybrid Mono-colored
+.mana-2B{ background-image: url('../../images/2B.svg');}
+.mana-2G{ background-image: url('../../images/2G.svg');}
+.mana-2R{ background-image: url('../../images/2R.svg');}
+.mana-2U{ background-image: url('../../images/2U.svg');}
+.mana-2W{ background-image: url('../../images/2W.svg');}
+
+// Hybrid Dual-colored
+.mana-BG{ background-image: url('../../images/BG.svg');}
+.mana-BR{ background-image: url('../../images/BR.svg');}
+.mana-GU{ background-image: url('../../images/GU.svg');}
+.mana-GW{ background-image: url('../../images/GW.svg');}
+.mana-RG{ background-image: url('../../images/RG.svg');}
+.mana-RW{ background-image: url('../../images/RW.svg');}
+.mana-UB{ background-image: url('../../images/UB.svg');}
+.mana-UR{ background-image: url('../../images/UR.svg');}
+.mana-WB{ background-image: url('../../images/WB.svg');}
+.mana-WU{ background-image: url('../../images/WU.svg');}
+
+// Hybrid Phyrexian
+.mana-BGP{ background-image: url('../../images/BGP.svg');}
+.mana-BRP{ background-image: url('../../images/BRP.svg');}
+.mana-GUP{ background-image: url('../../images/GUP.svg');}
+.mana-GWP{ background-image: url('../../images/GWP.svg');}
+.mana-RGP{ background-image: url('../../images/RGP.svg');}
+.mana-RWP{ background-image: url('../../images/RWP.svg');}
+.mana-UBP{ background-image: url('../../images/UBP.svg');}
+.mana-URP{ background-image: url('../../images/URP.svg');}
+.mana-WBP{ background-image: url('../../images/WBP.svg');}
+.mana-WUP{ background-image: url('../../images/WUP.svg');}
+
+// Counters
+.mana-A{ background-image: url('../../images/A.svg');}      // Acorn
+.mana-E{ background-image: url('../../images/E.svg');}      // Energy
+.mana-TK{ background-image: url('../../images/TK.svg');}    // Ticket
+
+
+// Special or Other
+.mana-CHAOS{ background-image: url('../../images/CHAOS.svg');}  // Chaos
+.mana-HR{ background-image: url('../../images/HR.svg');}        // Half-Red
+.mana-HW{ background-image: url('../../images/HW.svg');}        // Half-White
+.mana-PW{ background-image: url('../../images/PW.svg');}        // Planeswalker
+.mana-T{ background-image: url('../../images/T.svg');}          // Tap
+.mana-Q{ background-image: url('../../images/Q.svg');}          // Untap
+  
