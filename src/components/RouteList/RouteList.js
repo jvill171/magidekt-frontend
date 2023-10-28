@@ -1,25 +1,17 @@
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, Navigate} from 'react-router-dom';
 import Home from "../Home/Home"
 import Profile from "../Profile/Profile"
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
 import DeckBuilder from "../DeckBuilder/DeckBuilder";
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import UserContext from '../../context/UserContext';
 import DeckList from '../DeckList/DeckList';
 import NewDeck from '../NewDeck/NewDeck';
 
 const RouteList = () =>{
     const {user} = useContext(UserContext)
-
-    // useEffect(()=>{
-    // async function getAllDecks(){
-    // }
-    // getAllDecks();
-    // },[])
-
-    console.log(`I AM USER`, user)
-
+    
     return(
         <Routes>
             <Route
@@ -61,10 +53,10 @@ const RouteList = () =>{
                 </>
             }
             {/* Catch all route */}
-            {/* <Route 
+            <Route 
                 path="*"
                 element={ <Navigate to="/" replace={true} /> }
-            /> */}
+            />
         </Routes>
     )
 }
