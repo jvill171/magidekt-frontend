@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContext from "../../context/UserContext";
 import { NavLink } from "react-router-dom";
 import "./DeckListItem.scss"
@@ -6,8 +6,6 @@ import { identityToMana } from "../../helpers/toMana";
 
 const DeckListItem = ({data, showOwner = true}) =>{
     const { user } = useContext(UserContext)
-
-    console.log(`showOwner`, showOwner)
 
     const { colorIdentity,
             deckName,
@@ -22,7 +20,7 @@ const DeckListItem = ({data, showOwner = true}) =>{
     const upFormat = format[0].toUpperCase() + format.slice(1);
     // Generate mana icons
     const colorIcons = identityToMana(colorIdentity)
-    
+
     return(
         <NavLink to={`/decks/${user}/${id}`} className="DeckListItem decklist-item">
 
