@@ -74,7 +74,7 @@ const Profile = () =>{
             })
         }
         getUserProfile()
-    },[]);
+    },[user]);
     
     return(
         <>
