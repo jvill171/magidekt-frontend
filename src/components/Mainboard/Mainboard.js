@@ -53,19 +53,15 @@ const Mainboard = ({deckCards, updateCount}) =>{
                 <p className="title-text">{categ}</p>
             </div>
             <ul className="card-list">
-
-              {filterByCategory(categ).map((c, idx) => (
-                <>
-                  {c.magidekt_qty > 0 && 
-                    <li key={`card-${idx}-${c.id}`} className="card">
-                      <DeckCategoryCards
-                        cardData={c}
-                        updateCount={updateCount}
-                        />
-                    </li>}
-                </>
+              {filterByCategory(categ).map((c) => (
+                c.magidekt_qty > 0 &&
+                  (<li key={`card-${c.id}`} className="card">
+                    <DeckCategoryCards
+                      cardData={c}
+                      updateCount={updateCount}
+                    />
+                  </li>)
               ))}
-
             </ul>
           </div>
         )}
