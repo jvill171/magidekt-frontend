@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import Magidekt from "../../helpers/MagidektApi";
 import "./Home.scss"
 import { NavLink } from "react-router-dom";
 

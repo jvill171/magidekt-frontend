@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import { NavLink } from "react-router-dom";
 import "./DeckListItem.scss"
