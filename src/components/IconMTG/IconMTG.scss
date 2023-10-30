@@ -1,8 +1,3 @@
-  .IconMTG div{
-    background-color: white;
-    font-size:1em;
-  }
-
 
 .mana{
     display: inline-block;
@@ -35,11 +30,12 @@
     width: calc(5em - 2px);
 }
 
-.mana-PW, .mana-E, .mana-TK, .mana-CHAOS{
+.mana-PW, .mana-E, .mana-TK, .mana-CHAOS, .mana-5-Mana{
     background-size:contain;
     box-shadow: none;
     border-color: rgba(0,0,0,0);
 }
+
 
 // NUMBERS
 .mana-0{ background-image: url('../../images/0.svg');}
@@ -134,4 +130,7 @@
 .mana-PW{ background-image: url('../../images/PW.svg');}        // Planeswalker
 .mana-T{ background-image: url('../../images/T.svg');}          // Tap
 .mana-Q{ background-image: url('../../images/Q.svg');}          // Untap
+
+// Addtional Other
+.mana-5-Mana{ background-image: url('../../images/5-Mana.svg');}
   
