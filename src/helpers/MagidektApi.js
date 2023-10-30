@@ -20,7 +20,7 @@ class Magidekt {
 
     try {
       // Uncomment line below for more detailed debug
-      // console.debug(`MAKING API CALL\n`, method, url, `\ndata:`, data, `\nheaders:`, headers)
+      // console.debug(`MAKING API CALL\n`, method, url, `\ndata:`, data, `\nparams:`, params, `\nheaders:`, headers)
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
@@ -136,11 +136,28 @@ class Magidekt {
    * 
    * Creates a new deck without any cards
    * 
+   * Returns { id, deckName, description, format, colorIdentity, tags, deckOwner}
    */
   static async createDeck(username, data){
     try{
       let res = await this.request(`users/${username}/decks`, data, `post`);
       return res.deck;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
+  /**createDeck()
+   * 
+   * Creates a new deck without any cards
+   * 
+   * Returns {id, deckName, description, format, colorIdentity, tags, cards}
+   */
+  static async getDeckCards(username, deckId){
+    try{
+      let res = await this.request(`users/${username}/decks/${deckId}`);
+      return res.deck
     }catch(err){
       console.error(err)
       return err;
