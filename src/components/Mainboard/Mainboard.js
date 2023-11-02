@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import DeckCategoryCards from "../DeckCategoryCards/DeckCategoryCards"
 import "./Mainboard.scss"
+import makeTitleCase from "../../helpers/makeTitleCase"
 
 
 const Mainboard = ({deckCards, updateCount}) =>{
@@ -16,7 +17,7 @@ const Mainboard = ({deckCards, updateCount}) =>{
 
       for(let i = 0; i< allCats.length; i++){
         if(cTypeLine.includes(allCats[i].toLowerCase())){
-          return allCats[i].charAt(0).toUpperCase() + allCats[i].slice(1);
+          return makeTitleCase(allCats[i]);
         }
       }
       return "Other";
