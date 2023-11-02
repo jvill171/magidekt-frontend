@@ -148,6 +148,29 @@ class Magidekt {
     }
   }
 
+  /**updateDeck()
+   * 
+   * Updates deck info
+   * 
+   *  data can include:{deckName, description, format
+   *                    colorIdentity, tags[] }
+   * Returns 
+   *  { colorIdentity, deckName, deckOwner,
+   *    description, format, id, tags }
+   */
+  static async updateDeck(username, deckId, data){
+    try{
+      const {id, ...newData} = data;
+
+      let res = await this.request(`users/${username}/decks/${deckId}`, newData, "patch");
+      console.log(`RES DEC`, res.deck )
+      return res.deck;
+    }catch(err){
+      console.error(err);
+      return err;
+    }
+  }
+
   /**createDeck()
    * 
    * Creates a new deck without any cards
