@@ -7,7 +7,7 @@ import DeckBuilder from "../DeckBuilder/DeckBuilder";
 import { useContext } from 'react';
 import UserContext from '../../context/UserContext';
 import DeckList from '../DeckList/DeckList';
-import NewDeck from '../NewDeck/NewDeck';
+import DeckInfo from '../DeckInfo/DeckInfo';
 
 const RouteList = () =>{
     const {user} = useContext(UserContext)
@@ -32,7 +32,7 @@ const RouteList = () =>{
                     />
                     <Route exact
                         path="/decks/:username/new"
-                        element={<NewDeck />}
+                        element={<DeckInfo />}
                     />
                     <Route exact
                         path="/decks/:username/:deckId"
