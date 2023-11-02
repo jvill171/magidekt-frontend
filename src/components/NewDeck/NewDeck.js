@@ -4,18 +4,23 @@ import "./NewDeck.scss"
 import UserContext from "../../context/UserContext";
 import formatErrMsg from "../../helpers/formatErrMsg";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import makeTitleCase from "../../helpers/makeTitleCase";
 
 
-const NewDeck = () =>{
+const NewDeck = ({deckInfo=undefined}) =>{
     const navigate = useNavigate();
     const {user} = useContext(UserContext)
 
-    const INIT_FORMDATA = {
-        deckName:"",
-        tags:[],
-        deckOwner:user,
-    }
-    
+
+    const INIT_FORMDATA =deckInfo
+        ? { ...deckInfo }
+        : {
+            deckName:"",
+            tags:[],
+            deckOwner:user,
+          }
 
     // // Initialize state variables for form inputs
     const [formData, setFormData] = useState(INIT_FORMDATA);
@@ -30,16 +35,17 @@ const NewDeck = () =>{
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
-        ...formData,
-        [name]: value,
+            ...formData,
+            [name]: value,
         });
     };
 
     // ADDING A TAG TO THE TAGS LIST
     const handleAddTag = (e) => {
         e.preventDefault();
-        const newTag = newTagRef.current.value.toUpperCase()
-        newTagRef.current.value = ""
+        const lowerTag = newTagRef.current.value.toLowerCase();
+        const newTag = makeTitleCase(lowerTag)
+        newTagRef.current.value = "";
 
         // Ensure not a duplicate tag
         if(!formData.tags.includes(newTag)){
@@ -82,7 +88,10 @@ const NewDeck = () =>{
             setShowMsg(true);
         }else{
             setShowMsg(false);
-            let res = await MagidektApi.createDeck(user, formData)
+            
+            let res = !deckInfo
+                ? await MagidektApi.createDeck(user, formData)
+                : await MagidektApi.updateDeck(user, formData.id, formData);
 
             // If received res.message, something went wrong, display messages
             if(res.message){
@@ -105,11 +114,8 @@ const NewDeck = () =>{
                 navigate(`/decks/${user}/${res.id}`);
             }
         }
-
-
-        console.log(`SUBMITTED`)
     }
-
+    
     // On page load, retrieve valid formats from DB
     useEffect(()=>{
         async function getFormats(){
@@ -121,99 +127,101 @@ const NewDeck = () =>{
 
     return(
         <>
-            <h1>New Deck Component</h1>
-            
             <div className="form-wrapper">
-                <h2>New Deck</h2>
+                <h2>{ !deckInfo ? "New Deck" : "Deck Info" }</h2>
                 
                 <form className="NewDeck-form" onSubmit={handleSubmit}>
 
-                <div className="form-group">
-                    <label htmlFor="deckName">Name:</label>
-                    <input
-                        value={formData.deckName.trimStart(' ')}
-                        type="text"
-                        id="deckName"
-                        name="deckName"
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="deckName">Name:</label>
+                        <input
+                            value={formData.deckName.trimStart(' ')}
+                            type="text"
+                            id="deckName"
+                            name="deckName"
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="description">Description:</label>
-                    <textarea
-                        rows={4}
-                        maxLength={200}
-                        value={formData.description}
-                        type="text"
-                        id="description"
-                        name="description"
-                        onChange={handleInputChange}
-                        placeholder="Description - 200 character limit..."
-                        // ********************************************************************************************************
-                        style={{ overflow: "auto", resize: "none" }}
-                        // ********************************************************************************************************
-                    >
-                    </textarea>
-                </div>
-                
-                <div className="form-group">
-                    <label htmlFor="format">Format:</label>
-                    <select
-                        name="format"
-                        id="format"
-                        onChange={handleInputChange}
-                        required
+                    <div className="form-group">
+                        <label htmlFor="description">Description:</label>
+                        <textarea
+                            rows={3}
+                            maxLength={200}
+                            value={formData.description}
+                            type="text"
+                            id="description"
+                            name="description"
+                            onChange={handleInputChange}
+                            placeholder="Description - 200 character limit..."
                         >
-                            <option disabled selected>FORMAT</option>
+                        </textarea>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="format">Format:</label>
+                        <select
+                            name="format"
+                            id="format"
+                            onChange={handleInputChange}
+                            required
+                            value={formData.format}
+                        >
                             { validFormats &&
                                 validFormats.map(fmt=>
                                         <option key={`format-${fmt}`} value={fmt}>
-                                            {fmt.charAt(0).toUpperCase() + fmt.slice(1)}
+                                            {makeTitleCase(fmt)}
                                         </option>
                                 )
                             }
-                    </select>
-                </div>
-                
-                <div className="form-group">
-                    <div>TAGS</div>
-
-                    {formData.tags &&
-                        <div className="tag-list">
-                            <ul>
-                                { formData.tags.map((tag, idx) =>
-                                    <li key={`tag-${idx}`}>
-                                        <i  onClick={() => handleRemoveTag(idx)}
-                                            className="ms ms-ability-menace"></i>
-                                        {tag}
-                                    </li>)
-                                }
-                            </ul>
+                        </select>
+                    </div>
+                    
+                    <div className="form-group">
+                        <div className="tags">
+                            <label>Tags:</label>
+                            {formData.tags &&
+                                <div className="tag-list">
+                                    {formData.tags.map((tag, idx) => (
+                                    <div className="tag-bubble" key={`tag-${idx}`}>
+                                        {`${tag} `}
+                                        <FontAwesomeIcon
+                                            className="faXmark"
+                                            icon={faXmark}
+                                            onClick={() => handleRemoveTag(idx)}
+                                        />
+                                    </div>
+                                    ))}
+                                </div>
+                            }
                         </div>
+                        
+                        {formData.tags && formData.tags.length < 5
+                            ?   <div className="tag-input-row">
+                                    <input
+                                        ref={newTagRef}
+                                        maxLength={20}
+                                        placeholder={`Add a tag... [ ${formData.tags.length} of 5 ]`}
+                                    />
+                                    <button
+                                        className = "add-tag-btn"
+                                        onClick = { handleAddTag }
+                                    >Add Tag</button>
+                                </div>
+                            :   <p className="tag-limit">Tag limit reached (5)</p>
+                        }
+                    </div>
+                        
+                    {showMsg && 
+                        <ul>
+                            {formErr && formErr.map((e, idx) => <li key={`err-${idx}`}>{e}</li>)}
+                        </ul>
                     }
                     
-                    {formData.tags && formData.tags.length < 5
-                        ?   <>
-                                <input
-                                    ref={newTagRef}
-                                    maxLength={20}
-                                    placeholder={`Add a tag... [ ${formData.tags.length} of 5 ]`}
-                                />
-                                <button onClick={handleAddTag}>Add Tag</button>
-                            </>
-                        :   <p>Tag limit reached (5)</p>
-                    }
-                </div>
-                    
-                {showMsg && 
-                    <ul>
-                        {formErr && formErr.map((e, idx) => <li key={`err-${idx}`}>{e}</li>)}
-                    </ul>
-                }
-                    
-                    <button onClick={handleSubmit}>SUBMIT</button>
+                    <button onClick={handleSubmit}>
+                        { !deckInfo ? "SUBMIT" : "UPDATE" }
+                    </button>
                 </form>
             </div>
         </>

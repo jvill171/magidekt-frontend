@@ -1,0 +1,99 @@
+.form-wrapper{
+    max-width: 80%;
+    margin: auto;
+    background-color: white;
+    background-color: rgba(255,255,255,0.9);
+    padding: 10px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+
+    .NewDeck-form{ 
+        padding: 10px;
+
+        input {
+            flex: 1;
+            padding: 3px;
+        }
+        input, textarea, select {
+            width: 100%;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+        }
+        textarea{
+            resize: none;
+        }
+        label {
+            display:block;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-decoration: underline;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin: 10px 0;
+            
+            .tag-input-row{
+                display: flex;
+                margin-top: 8px;
+
+                input{
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                
+                .add-tag-btn{
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+            }
+
+            .tags{
+                display: flex;
+                align-items: center;
+                background-color: lightgray;
+                border-radius: 5px;
+                padding: 0 5px;
+                
+                > label{ margin-right: 5px; }
+
+                .tag-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 10px 0;
+                    
+                    > *{ margin: 5px; }
+                }
+            
+                .tag-bubble {
+                    color: black;
+                    padding: 1px 8px;
+                    margin: 3px; 
+                    border-radius: 500px;
+                    font-size: 0.9em;
+                    border: 1px solid black;
+                    
+                    &:hover{
+                        background-color: black;
+                        color:white;
+                        cursor:context-menu;
+                    }
+                    
+                    .faXmark{
+                        margin-left: 5px;
+
+                        &:hover{ color:red; cursor: pointer; }
+                    }
+                }
+            }
+        }
+    }
+}
