@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import MagidektApi from '../../helpers/MagidektApi';
-import "./NewDeck.scss"
+import "./DeckInfo.scss"
 import UserContext from "../../context/UserContext";
 import formatErrMsg from "../../helpers/formatErrMsg";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import makeTitleCase from "../../helpers/makeTitleCase";
 
 
-const NewDeck = ({deckInfo=undefined}) =>{
+const DeckInfo = ({deckInfo=undefined}) =>{
     const navigate = useNavigate();
     const {user} = useContext(UserContext)
 
@@ -130,7 +130,7 @@ const NewDeck = ({deckInfo=undefined}) =>{
             <div className="form-wrapper">
                 <h2>{ !deckInfo ? "New Deck" : "Deck Info" }</h2>
                 
-                <form className="NewDeck-form" onSubmit={handleSubmit}>
+                <form className="DeckInfo-form" onSubmit={handleSubmit}>
 
                     <div className="form-group">
                         <label htmlFor="deckName">Name:</label>
@@ -228,4 +228,4 @@ const NewDeck = ({deckInfo=undefined}) =>{
     )
 }
 
-export default NewDeck;
+export default DeckInfo;
