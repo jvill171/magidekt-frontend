@@ -1,46 +1,41 @@
+import IconMTG from "../components/IconMTG/IconMTG";
 
-/**dataToMana
+/**stringMana
  * 
- * Converts a list of items into a list of <i> elements to be rendered
+ * Converts all mana symbols within curly braces {} into IconMTG components
+ *  
  * 
- * [{R}, {R/G}] =>
- *  [
- *  <i className="ms ms-r"></i>,
- * 
- *  <span className="mana-container dual-mana-rg">
- *      <i className="ms ms-r"></i>
- *      <i className="ms ms-g"></i>
- *  </span>
- *  ]
+ * "An example {R} String" =>
+ *      "An example <IconMTG manaData={R} spaced={false}/> String"
  */
-const dataToMana = (data) =>{
-    // THIS HELPER IS A WORK IN PROGRESS AND CURRENTLY NON-FUNCTIONAL
-    // THIS HELPER IS A WORK IN PROGRESS AND CURRENTLY NON-FUNCTIONAL
-    data = data.map(str => str.replace(/^[{}]+|[{}]+$/g, ''))
-    let manaArr = []
-    for(let i=0; i < data.length; i++){
-        const mana = data[i].split('/');
-        let manaIcons;
 
-        if(mana.length > 1){
-            manaIcons = []
-        }
-        manaIcons = mana.map(m=>
-            "<i className={`ms ms-${m}`}></i>"
-        )
-        // manaArr.push()
+const stringMana = (inputString) =>{
+
+    // Target all values within braces such as {U}
+    const regex = /{([^}]+)}/g;
+    let startIndex = 0;
+    let result = [];
+  
+    let match;
+    while ((match = regex.exec(inputString)) !== null) {
+      const value = match[1];
+      const before = inputString.slice(startIndex, match.index);
+      result.push(before);
+      result.push(<IconMTG manaData={value} spaced={false}/>);
+      startIndex = match.index + match[0].length;
     }
-    return manaArr;
-    // THIS HELPER IS A WORK IN PROGRESS AND CURRENTLY NON-FUNCTIONAL
-    // THIS HELPER IS A WORK IN PROGRESS AND CURRENTLY NON-FUNCTIONAL
+  
+    result.push(inputString.slice(startIndex));
 
+    return result;
 }
+
 
 /**identityToMana
  * 
  * Converts a string of mana identity into an array of
  *      <i> elements for each respective mana 
- * [RGBWU] =>
+ * "RGBWU" =>
  *  [
  *      <i className="ms ms-r"></i>,
  *      <i className="ms ms-g"></i>,
@@ -52,13 +47,41 @@ const dataToMana = (data) =>{
 const identityToMana = (manaID)=>{
     // If no identity, assume colorless
     if(!manaID || manaID.length < 1){
-        return [<i key={`mana-c`} className={`ms ms-c`}></i>]
+        return [<IconMTG manaData={"C"} spaced={false}/>]
     }else{
         const mana = manaID.split('')
         return mana.map(m =>
-            <i key={`mana-${m}`} className={`ms ms-${m.toLowerCase()}`}></i>
+            <IconMTG manaData={m} spaced={false}/>
         )
     }
 }
 
-export {dataToMana, identityToMana};
+/**determineIdentity
+ * 
+ * @param  cards - An array of cards that have been given the magidekt property of "action" 
+ * @returns A custom-ordered string of the color identity, such as "WUBRG"
+ */
+const determineIdentity = (cards)=>{
+    const cOrder = ["W", "U", "B", "R", "G"]
+    const colorSet = new Set();
+
+    for(let idx=0; idx < cards.length; idx++){
+        if(cards[idx].magidekt.action !== "remove"){
+            for(let cID of cards[idx].color_identity){
+                colorSet.add( cID )
+            }
+            if(colorSet.size === 5){
+                break;
+            }
+        }
+    }
+
+    const ordered = [...colorSet].sort((a, b) =>
+        cOrder.indexOf(a) - cOrder.indexOf(b));
+    
+
+    return ordered.join("");
+}
+
+
+export { identityToMana, stringMana, determineIdentity};
