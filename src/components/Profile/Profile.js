@@ -4,6 +4,9 @@ import "./Profile.scss"
 import UserContext from "../../context/UserContext";
 import Loading from "../Loading/Loading"
 import formatErrMsg from "../../helpers/formatErrMsg"
+import Overlay from "../Overlay/Overlay";
+import DeleteForm from "../DeleteForm/DeleteForm";
+import { useNavigate } from "react-router-dom";
 
 
 const Profile = () =>{
@@ -11,13 +14,15 @@ const Profile = () =>{
         username: "",
         deckCount: ""
     }
+    const navigate = useNavigate()
 
     // // Initialize state variables for form inputs
     const [formData, setFormData] = useState(INIT_FORMDATA);
     const [showMsg, setShowMsg] = useState(false);
     const [formErr, setFormErr] = useState([])
+    const [deleteOpen, setDeleteOpen] = useState(false)
 
-    const {user} = useContext(UserContext)
+    const { user, updateUser } = useContext(UserContext)
 
     // Handle form input changes
     const handleInputChange = (e) => {
@@ -30,6 +35,7 @@ const Profile = () =>{
 
     // Handle form submission
     const handleSubmit = async (e) => {
+        setShowMsg(false);
         e.preventDefault();
         setFormErr([]); //Clear any previous errors
 
@@ -63,6 +69,29 @@ const Profile = () =>{
             setFormData({ ...formData, password:"", authPass:""})
         }
     }
+
+    const openDeleteOverlay = async (e) =>{
+        e.preventDefault();
+        setFormErr([]); //Clear any previous errors
+
+        const verifyUser = {
+            username: user,
+            password: formData.authPass
+        }
+        let tokenRes = await MagidektApi.login(verifyUser);
+        if(tokenRes.message){
+            setFormErr([`Enter your password open the account deletion verification.`])
+        }else{
+            setDeleteOpen(true)
+        }
+    }
+    const deleteProfile = async () =>{
+        await MagidektApi.deleteUser(user)
+        localStorage.removeItem(`_token`)
+        updateUser();
+        navigate(`/`) //After deletion & sign out, redirect to "/"
+    }
+
     useEffect(()=>{
         async function getUserProfile(){
             const res = await MagidektApi.getUserData(user)
@@ -163,15 +192,19 @@ const Profile = () =>{
                     </>
                     :
                     <ul>
-                        {formErr.map(m => <li>{m}</li>)}
+                        {formErr.map((m, idx) => <li key={idx} className="formErrs">{m}</li>)}
                     </ul>
                     }
                     <div>
                     <button type="submit">Update</button>
+                    <button className="delete-btn" onClick={openDeleteOverlay} >Delete Account</button>
                     </div>
                 </form>
             </div>
             }
+            <Overlay isOpen={deleteOpen} onClose={ () => setDeleteOpen(false)}>
+                <DeleteForm toDelete="Profile" deleteAction={deleteProfile}/>
+            </Overlay>
         </>
     )
 }
