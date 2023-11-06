@@ -19,7 +19,7 @@ class Scryfall {
 
         try {
             // Uncomment line below for more detailed debug
-            console.debug(`MAKING API CALL\n`, method, url, `\ndata:`, data, `\nparams:`, params)
+            // console.debug(`MAKING API CALL\n`, method, url, `\ndata:`, data, `\nparams:`, params)
             return await axios({ url, method, data, params})
         } catch (err) {
           console.error("API Error:", err.response);
@@ -34,11 +34,13 @@ class Scryfall {
     /** getRandom()
      * 
      * Retreives a random card from Scryfall that meets the criteria "q"
+     * retreives page "page" of results
+     * 
      *      Returns 1 random Scryfall card
      */
-    static async getRandom(q){
+    static async getRandom(q, page = 1){
         try{
-            const data = { q }
+            const data = { q, page }
             let res = await this.request(`cards/random`, data)
             return res.data;
         }catch(err){
@@ -54,10 +56,10 @@ class Scryfall {
      * 
      * Returns up to 175 Scryfall card per page/call
      */
-    static async search(q, page){
+    static async search(q, page = 1){
         try{
             const data = { q, page }
-            let res = await this.request(`cards/random`, data)
+            let res = await this.request(`cards/search`, data)
             return res.data;
         }catch(err){
             console.error(err)
