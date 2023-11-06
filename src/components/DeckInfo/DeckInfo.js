@@ -128,7 +128,7 @@ const DeckInfo = ({deckInfo=undefined}) =>{
     return(
         <>
             <div className="form-wrapper">
-                <h2>{ !deckInfo ? "New Deck" : "Deck Info" }</h2>
+                <h2>{ !deckInfo && "New"} Deck Info</h2>
                 
                 <form className="DeckInfo-form" onSubmit={handleSubmit}>
 
