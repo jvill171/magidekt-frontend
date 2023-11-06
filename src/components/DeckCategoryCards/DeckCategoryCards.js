@@ -1,6 +1,5 @@
 
 import "./DeckCategoryCards.scss"
-import IconMTG from "../IconMTG/IconMTG"
 import { useState } from "react";
 
 
@@ -11,16 +10,19 @@ const DeckCategoryCards = ({cardData, updateCount}) =>{
 
     return(
         <>
-            <p className="card-qty">{cardData.magidekt_qty}</p>
+            <p className="card-qty">{cardData.magidekt.qty}</p>
             <div className="card-actions">
-                <button className="card-add" title="+1" onClick={()=>updateCount(cardData.id, parseInt(cardData.magidekt_qty) + 1)}>
+                <button
+                    className="card-add"
+                    title="+1"
+                    onClick={()=>updateCount(cardData.id, 1)}>
                     {`+`}
                 </button>
-                <button className="card-remove" title="-1" onClick={()=>updateCount(cardData.id, parseInt(cardData.magidekt_qty) - 1)}>
+                <button
+                    className="card-remove"
+                    title="-1"
+                    onClick={()=>updateCount(cardData.id, -1)}>
                     {`-`}
-                </button>
-                <button className="card-info" title="ⓘ Info">
-                    <IconMTG manaData={`5-Mana`} spaced={false}/>
                 </button>
                 {!cardData.image_uris && 
                     <button className="card-flip" title="Flip" onClick={toggleFlip}>
