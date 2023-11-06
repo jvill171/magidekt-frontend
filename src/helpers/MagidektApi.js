@@ -1,4 +1,5 @@
 import axios from "axios";
+import { determineIdentity } from "./toMana";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -100,6 +101,23 @@ class Magidekt {
     }
   }
 
+  /**deleteUser()
+   * 
+   * Deletes [username]
+   * 
+   * Returns { deleted: username }
+   */
+  static async deleteUser(username){
+    try{
+      let res = await this.request(`users/${username}`, {}, `delete`);
+      return res.deck;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
+
   /**getUserDecks
    * Retreive all decks for a specified user
    * 
@@ -148,6 +166,22 @@ class Magidekt {
     }
   }
 
+  /**deleteDeck()
+   * 
+   * Deletes [username]'s deck with id of [id]
+   * 
+   * Returns { deleted: id }
+   */
+  static async deleteDeck(username, deckId){
+    try{
+      let res = await this.request(`users/${username}/decks/${deckId}`, {}, `delete`);
+      return res.deck;
+    }catch(err){
+      console.error(err)
+      return err;
+    }
+  }
+
   /**updateDeck()
    * 
    * Updates deck info
@@ -163,7 +197,6 @@ class Magidekt {
       const {id, ...newData} = data;
 
       let res = await this.request(`users/${username}/decks/${deckId}`, newData, "patch");
-      console.log(`RES DEC`, res.deck )
       return res.deck;
     }catch(err){
       console.error(err);
@@ -186,7 +219,106 @@ class Magidekt {
       return err;
     }
   }
+  
+  /**addDeckCards
+   * Adds cards to a specified user deck.
+   * 
+   * @param username - user attempting to make the change
+   * @param deckId - ID of the target deck
+   * @param data  - An object like { deckCards:[ { cardId, quantity }, ...] }
+   * @returns { added:[{ cardId, quantity }, ...], rejected:[{ cardId, quantity }, ...] }
+   */
+  static async addDeckCards(username, deckId, data){
+    try{
+        let res = await this.request(`users/${username}/decks/${deckId}/cards`, data, "post");
+        return res.cards;
 
+      }catch(err){
+        console.error(err)
+        return err;
+      }
+  }
+  
+  /**updateDeckCards
+   * Updates cards from a specified user deck.
+   * 
+   * @param username - user attempting to make the change
+   * @param deckId - ID of the target deck
+   * @param data  - An object like { deckCards:[ { cardId, quantity }, ...] }
+   * @returns { updated:[{ cardId, quantity }, ...], rejected:[{ cardId, quantity }, ...] }
+   */
+  static async updateDeckCards(username, deckId, data){
+    try{
+        let res = await this.request(`users/${username}/decks/${deckId}/cards`, data, "patch");
+        return res.cards;
+
+      }catch(err){
+        console.error(err)
+        return err;
+      }
+  }
+  
+  /**removeDeckCards
+   * Removes cards from a specified user deck.
+   * 
+   * @param username - user attempting to make the change
+   * @param deckId - ID of the target deck
+   * @param data  - An array of cardIds like [cardId, cardId, ...]
+   * @returns { removed:[cardId, cardId, ...] }
+   */
+  static async removeDeckCards(username, deckId, data){
+    try{
+        let res = await this.request(`users/${username}/decks/${deckId}/cards`, data, "delete");
+        return res;
+
+      }catch(err){
+        console.error(err)
+        return err;
+      }
+  }
+
+  
+  /**saveDeck
+   * Determines when to add, update, and remove cards.
+   * 
+   * @param username - user attempting to make the change
+   * @param deckId - ID of the target deck
+   * @param data  - An array of cardIds like [cardId, cardId, ...]
+   * @returns {[
+   *   { added:[{ cardId, quantity }, ...], rejected:[{ cardId, quantity }, ...] },
+   *   { added:[{ cardId, quantity }, ...], rejected:[{ cardId, quantity }, ...] },
+   *   { removed:[cardId, cardId, ...] },
+   *   { colorIdentity, deckName, deckOwner, description, format, id, tags }
+   *  ]
+   * }
+   */
+  static async saveDeck(username, deckId, data, colorIdentity){
+    try{
+      const promises = [];
+      // Add cards
+      if(data.add.length    > 0){
+        promises.push(this.addDeckCards(username, deckId, { deckCards: data.add }))
+      }
+      // Update cards
+      if(data.update.length > 0){
+        promises.push(this.updateDeckCards(username, deckId, { deckCards: data.update }))
+      }
+      // Remove cards
+      if(data.remove.length > 0){
+        promises.push(this.removeDeckCards(username, deckId, { cardIds: data.remove }))
+      }
+      // Update colorIdentity of deck
+      promises.push(this.updateDeck(username, deckId, { colorIdentity }))
+      
+      const res = await Promise.all(promises)
+      return res;
+
+    }catch(err){
+      // Should never be encountered due to how other methods have a try-catch. This is only a precaution.
+      console.error('One or more promises encountered errors:', err);
+      return err;
+    }
+  }
 }
 
 export default Magidekt;
