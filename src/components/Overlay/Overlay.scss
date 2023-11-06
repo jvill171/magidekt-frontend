@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9;
+    z-index: 1000;
 }
 
 .overlay__container {
@@ -18,7 +18,9 @@
     margin: auto;
     z-index: 1000;
     width: fit-content;
-    max-height: 80vh;
+    height: fit-content;
+    max-height: 90vh;
+    max-width: 90vw;
     overflow: auto;
     border-radius: 5px;
 }
@@ -40,12 +42,16 @@
     background: white;
     background: linear-gradient(white 80%, rgba(255,255,255,0.1));
     padding: 2px;
+    z-index: 1000; 
 }
 
+// Back/Close button
 .overlay__close {
     border: none;
     background-color: transparent;
     font-size: 30px;
     cursor: pointer;
     color: black;
+    
+    &:hover{ background-color: lightgray; }
 }

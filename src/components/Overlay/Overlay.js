@@ -4,13 +4,14 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import "./Overlay.scss"
 
 
-const Overlay = ({isOpen, onClose, children}) =>{
+const Overlay = ({isOpen, onClose, containerWidth = null, children}) =>{
     return(
       <>
         {isOpen && (
-          <div className="overlay">
+          <div className="overlay" id="overlay">
             <div className="overlay__background" />
-            <div className="overlay__container">
+            <div className="overlay__container"
+                  style={ containerWidth && {width:`${containerWidth}`} }>
               <div className="overlay__controls__container">
                 <div className="overlay__controls">
                   <button
