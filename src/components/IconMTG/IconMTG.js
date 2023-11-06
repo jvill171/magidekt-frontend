@@ -7,7 +7,7 @@ const IconMTG = ({manaData, spaced = true}) =>{
     function genIcon(){
       const cleanName = "mana-" + manaData.replace(/[{}/]/g, '');
 
-      return <span className={`mana ${cleanName}`}></span>
+      return <span title={manaData} className={`mana ${cleanName}`}></span>
     }
 
     return(
