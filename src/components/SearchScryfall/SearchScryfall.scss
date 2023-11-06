@@ -1,0 +1,29 @@
+.search-wrapper {
+    min-width: 50vw;
+  }
+
+.Search-form{
+    input, select{  font-size: 0.8em; }
+    label{ margin-right: 5px;}
+    .compare-int select{ width: 45px; }
+    .compare-int input{  width: 50px; }
+
+    .form-group {
+        display: flex;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+      
+        label { display: inline-block; }
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle; 
+        }
+    }
+}
+
+.err-msg{
+    color: red;
+    list-style: square;
+    text-align: left;
+}
