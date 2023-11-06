@@ -13,6 +13,8 @@
     ul{
         text-align: left;
         list-style: none;
+        margin: 10px auto;
+        padding: 5px;
     }
 
     .deck-name{
@@ -61,3 +63,15 @@
     }
 }
   
+
+.description{
+    width: 100%;
+    p{
+        height: 3em;
+        padding: 5px;
+        margin: 2px auto;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        overflow-y: scroll;
+    }
+}
