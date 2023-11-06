@@ -1,15 +1,17 @@
-.DeckListItem{
-    // background-color: green;
-    // width: 150px;
+// DeckList component itself
+.DeckList{
+    max-width: 95vw;
+    margin: auto;
 }
 
 
-  /* styles.css (or your preferred CSS file) */
+// List of individal decks
 .deck-list {
+    margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: space-evenly;
-  }
+}
   
   
