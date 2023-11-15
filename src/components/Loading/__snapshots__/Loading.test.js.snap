@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component matches snapshot 1`] = `
+<DocumentFragment>
+  <h1
+    class="Loading"
+  >
+    <i
+      class="ms ms-g"
+    />
+    <i
+      class="ms ms-u"
+    />
+    <i
+      class="ms ms-r"
+    />
+    <i
+      class="ms ms-w"
+    />
+    <i
+      class="ms ms-b"
+    />
+  </h1>
+</DocumentFragment>
+`;
