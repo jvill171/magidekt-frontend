@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeckInfo component matches snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="navbar-fade"
+  >
+    <div
+      class="navbar"
+    >
+      <div
+        class="logo"
+      >
+        <a
+          href="/"
+        >
+          <span>
+            Magi
+          </span>
+          dekt
+        </a>
+      </div>
+      <ul
+        class="nav-NavLinks"
+      >
+        <li>
+          <a
+            class=""
+            href="/login"
+          >
+            Login
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/signup"
+          >
+            Signup
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div
+    class="Home"
+  >
+    <h1>
+      Magidekt
+    </h1>
+    <div
+      class="auth-buttons"
+    >
+      <a
+        class=""
+        href="/login"
+      >
+        <button>
+          Login
+        </button>
+      </a>
+      <a
+        class=""
+        href="/signup"
+      >
+        <button>
+          Sign Up
+        </button>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
