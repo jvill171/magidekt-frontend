@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconMTG component matches snapshot 1`] = `
+<DocumentFragment>
+   
+  <span
+    class="mana mana-W"
+    title="{W}"
+  />
+   
+</DocumentFragment>
+`;

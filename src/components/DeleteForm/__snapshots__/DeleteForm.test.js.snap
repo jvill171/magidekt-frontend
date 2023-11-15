@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteForm component matches snapshot 1`] = `
+<DocumentFragment>
+  <form
+    class="DeleteForm"
+  >
+    <h3>
+      To delete your Test Item, type the following:
+    </h3>
+    <p>
+      Magidekt!
+    </p>
+    <input
+      type="text"
+      value=""
+    />
+    <br />
+    <button
+      class="delete-btn"
+      disabled=""
+    >
+       Delete Test Item 
+    </button>
+  </form>
+</DocumentFragment>
+`;
