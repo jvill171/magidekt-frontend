@@ -11,6 +11,10 @@ import IconMTG from "../components/IconMTG/IconMTG";
 
 const stringMana = (inputString) =>{
 
+    if(!inputString.includes("{")){
+        return inputString;
+    }
+
     // Target all values within braces such as {U}
     const regex = /{([^}]+)}/g;
     let startIndex = 0;
@@ -26,7 +30,6 @@ const stringMana = (inputString) =>{
     }
   
     result.push(inputString.slice(startIndex));
-
     return result;
 }
 
@@ -47,11 +50,11 @@ const stringMana = (inputString) =>{
 const identityToMana = (manaID)=>{
     // If no identity, assume colorless
     if(!manaID || manaID.length < 1){
-        return [<IconMTG manaData={"C"} spaced={false}/>]
+        return [<IconMTG key={"C"} manaData={"C"} spaced={false}/>]
     }else{
         const mana = manaID.split('')
         return mana.map(m =>
-            <IconMTG manaData={m} spaced={false}/>
+            <IconMTG key={m} manaData={m} spaced={false}/>
         )
     }
 }
