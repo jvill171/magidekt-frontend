@@ -1,7 +1,6 @@
 
 import { useState } from "react"
 import "./DeleteForm.scss"
-import Magidekt from "../../helpers/MagidektApi"
 
 
 const DeleteForm = ({toDelete = "???", deleteAction}) =>{
