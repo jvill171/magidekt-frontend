@@ -1,70 +1,66 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Magidekt
 
-## Available Scripts
+Magidekt is an app that attempts to replicate [Archidekt](https://archidekt.com/ "Archidekt") through the use of [Scryfall's API](https://scryfall.com/docs/api "Scryfall API"). The frontend was build with React and the backend was built with Node, Express, and Postgresql.
 
-In the project directory, you can run:
+### To see a live demo: 
 
-### `npm start`
+`v v v ========== PENDING PENDING PENDING ========== v v v`  
+Sign up on your own or use this demo account:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Username: demouser
+* Password: password
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Magidekt is a React-based Deck builder featuring account creation, profile editing, Deck editing, and even saving!
 
-### `npm test`
+ [Live Demo](#)  
+ `^ ^ ^ ========== PENDING PENDING PENDING ========== ^ ^ ^`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies
+* React.js
+* Node Express.js
+* PostgreSQL
 
-### `npm run build`
+## Current Features
+* Profile editing
+* Account deletion
+* Create a deck & add cards to a deck
+* Card Searching through Scryfall API
+* Account creation, login, logout -> uses authorization and authentication middleware to protect private routes
+* Search Companies & Jobs: browse and search hiring companies and view the jobs posted by each company.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Planned Features
+* Deck Sharing
+* Anonymous viewing and replication of decks
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started on the Server (backend)
+* Clone the repository
+* `cd server`
+* `npm i`
+* `createdb magidekt`
+* `createdb magidekt_test`
+* `psql magidekt < magidekt-seed.sql` (optional)
+    * This seed is mainly for testing purposes and thus is not strictly required. Modify the seed as you feel fit.
+    * If the seed is unused, it is recommended to create an account through the registration route.
+    * **NOTE**: The default password set on both seed accounts is "password". This is not the case for the deployed app.
+* `npm start`
+* `npm test` to run the tests
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started on the Client (frontend)
+* `npm i`
+* `npm run start`
+* `npm run test` to run the tests
 
-### `npm run eject`
+# Future Plans & Noteworthy Code
+Currently, there are many areas for improvement in my code.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* I would like to implement some routes for all users including unauthenticated users to simply view & explore existing decks.
+* While writing tests, I noticed that my ScrufallResults component continued to re-render when typing in the search form. I will look into the reason for this.
+* Due to time constraints, I could not style some pages to the extent I would like, such as the Profile page.
+* Most of my time in styles was spent on the major component of this project, the DeckBuilder and its child components. I feel fairly satisfied with the DeckBuilder as it stands, besides the lack of a `DeckContext`, which I will fix in the future.
+* A major area for improvement I am aware of of is the lack of a `DeckContext` to keep track of deck data when building a deck, which is instead prop-drilled down through components. Due to time constraints, by the time i realized I could use a Context, I was too far into my project to take the time to refactor my code. I chose to leave it as it was in order to submit my project, but I plan to return to fix this.
+* One feature I did not get to implement but plan to, is the ability to click on a card to preview its data in better detail. Due to time constraints, I cut this out of the submission, but will attempt to implement it after the `DeckContext` refactor.
+* Admins currently lack the ability to directly alter a user's decks/profiles through the frontend. An Admin panel would be a nice idea to implement.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Notes
+* Due to the inconsistent location of data from Scryfall API, much of the code that renders card data appears rather messy. This was mainly due to having to account for double-sided cards and different layouts having data located under different places of the JSON hierarchy. It took much of my time in the project to map out in order to ensure there were no errors for the data I chose to display.
