@@ -4,7 +4,7 @@ import "./SearchScryfall.scss"
 import Loading from "../Loading/Loading"
 import Scryfall from "../../helpers/ScryfallApi"
 import SearchResults from "../SearchResults/SearchResults";
-import buildSearchQuery from "../../helpers/buildSeachQuery";
+import buildSearchQuery from "../../helpers/buildSearchQuery";
 
 
 const SearchScryfall = ({updateCount, deckCards}) =>{
