@@ -4,8 +4,6 @@
 Magidekt is an app that attempts to replicate [Archidekt](https://archidekt.com/ "Archidekt") through the use of [Scryfall's API](https://scryfall.com/docs/api "Scryfall API"). The frontend was build with React and the backend was built with Node, Express, and Postgresql.
 
 ### To see a live demo: 
-
-`v v v ========== PENDING PENDING PENDING ========== v v v`  
 Sign up on your own or use this demo account:
 
 * Username: demouser
@@ -13,8 +11,7 @@ Sign up on your own or use this demo account:
 
 Magidekt is a React-based Deck builder featuring account creation, profile editing, Deck editing, and even saving!
 
- [Live Demo](#)  
- `^ ^ ^ ========== PENDING PENDING PENDING ========== ^ ^ ^`
+ [Live Demo](https://magidekt.surge.sh/ "Magidekt")  
 
 ## Technologies
 * React.js
