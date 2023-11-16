@@ -54,13 +54,21 @@ Magidekt is a React-based Deck builder featuring account creation, profile editi
 # Future Plans & Noteworthy Code
 Currently, there are many areas for improvement in my code.
 
-* I would like to implement some routes for all users including unauthenticated users to simply view & explore existing decks.
+* After updating Deck Info once, clicking on the `Deck Info` button again will show the old information. This is a visual bug and is simply due to the client not saving the new info, but the DB will save this info.
+
 * While writing tests, I noticed that my ScrufallResults component continued to re-render when typing in the search form. I will look into the reason for this.
+
 * Due to time constraints, I could not style some pages to the extent I would like, such as the Profile page.
+
 * Most of my time in styles was spent on the major component of this project, the DeckBuilder and its child components. I feel fairly satisfied with the DeckBuilder as it stands, besides the lack of a `DeckContext`, which I will fix in the future.
+
 * A major area for improvement I am aware of of is the lack of a `DeckContext` to keep track of deck data when building a deck, which is instead prop-drilled down through components. Due to time constraints, by the time i realized I could use a Context, I was too far into my project to take the time to refactor my code. I chose to leave it as it was in order to submit my project, but I plan to return to fix this.
+
 * One feature I did not get to implement but plan to, is the ability to click on a card to preview its data in better detail. Due to time constraints, I cut this out of the submission, but will attempt to implement it after the `DeckContext` refactor.
+
 * Admins currently lack the ability to directly alter a user's decks/profiles through the frontend. An Admin panel would be a nice idea to implement.
+
+* I would like to implement some routes for all users including unauthenticated users to simply view & explore existing decks.
 
 ### Notes
 * Due to the inconsistent location of data from Scryfall API, much of the code that renders card data appears rather messy. This was mainly due to having to account for double-sided cards and different layouts having data located under different places of the JSON hierarchy. It took much of my time in the project to map out in order to ensure there were no errors for the data I chose to display.
