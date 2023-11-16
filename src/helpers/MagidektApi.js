@@ -82,6 +82,10 @@ class Magidekt {
    *    {username, displayName, email, isAdmin}
    */
   static async updateUserData(username, formData){
+    // Prevent password update for demo user
+    if(username === "demouser"){
+      delete formData.password
+    }
 
     const { displayName, email, password } = formData;
 
@@ -107,9 +111,12 @@ class Magidekt {
    * Returns { deleted: username }
    */
   static async deleteUser(username){
+    // Prevent demouser deletion
+    if(username === "demouser"){ return; }
+
     try{
       let res = await this.request(`users/${username}`, {}, `delete`);
-      return res.deck;
+      return res;
     }catch(err){
       console.error(err)
       return err;

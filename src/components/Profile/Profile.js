@@ -199,6 +199,13 @@ const Profile = () =>{
                     <button type="submit">Update</button>
                     <button className="delete-btn" onClick={openDeleteOverlay} >Delete Account</button>
                     </div>
+                    {user === "demouser" &&
+                        <div style={{backgroundColor: "yellow",
+                        border: "2px solid black", padding: "0 5px", borderRadius:"5px"}}>
+                            <h4>Note: <u>demouser</u> cannot have its password updated & cannot be deleted.<br/> However, your actions will appear successful.
+                            </h4>
+                        </div>
+                    }
                 </form>
             </div>
             }
