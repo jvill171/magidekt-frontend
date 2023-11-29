@@ -3,6 +3,8 @@
 
 Magidekt is an app that attempts to replicate [Archidekt](https://archidekt.com/ "Archidekt") through the use of [Scryfall's API](https://scryfall.com/docs/api "Scryfall API"). The frontend was build with React and the backend was built with Node, Express, and Postgresql.
 
+Click [here](https://github.com/jvill171/magidekt-backend "Magidekt (backend)")  to view the Backend for this project!
+
 ### To see a live demo: 
 Sign up on your own or use this demo account:
 
